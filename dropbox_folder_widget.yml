@@ -1,0 +1,23 @@
+#this widget will display a list of items in a dropbox folder with links to the individual files
+#copy and paste to your services.yaml 
+#and add {{HOMEPAGE_VAR_DROPBOX_AUTH_TOKEN}} & {{HOMEPAGE_VAR_DROPBOX_FOLDER_PATH}} values to your .env
+
+- Dropbox Folder:
+	href: https://www.dropbox.com/home/Incoming
+	icon: dropbox
+	widget:
+		type: customapi
+		url: https://api.dropboxapi.com/2/files/list_folder
+		method: POST
+		refreshInterval: 1800
+		headers:
+			Authorization: 'Bearer {{HOMEPAGE_VAR_DROPBOX_AUTH_TOKEN}}'
+			Content-Type: application/json
+		requestBody: '{"path": "/{{HOMEPAGE_VAR_DROPBOX_FOLDER_PATH}}"}'
+		display: dynamic-list
+		# Values  for display: dynamic-list 
+		mappings:
+			items: entries
+			name: name 
+			#label: .tag
+			target: https://www.dropbox.com/home{path_lower}
