@@ -19,5 +19,5 @@
 		mappings:
 			items: entries
 			name: name 
-			#label: .tag
+			label: .tag
 			target: https://www.dropbox.com/home{path_lower}
